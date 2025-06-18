@@ -45,7 +45,7 @@ int main() {
     SDL_PauseAudio(0);
 
     while (1) {
-        demo_scale_frame(10);
+        demo_scale_frame(10); // Call your melody function here
         SDL_Delay(10);
     }
 }

@@ -27,8 +27,6 @@ find_package(SDL2 REQUIRED)
 
 add_executable(lokey_sdl_test
         tests/sdl_host/main.cpp
-        tests/sdl_host/demo_loop.cpp
-        tests/sdl_host/demo_melody.cpp
         tests/sdl_host/demo_scale.cpp
         src/sound/pokey.c
 )
