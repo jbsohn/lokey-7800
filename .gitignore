@@ -1,0 +1,48 @@
+# === General ===
+*.DS_Store
+*.log
+*.tmp
+*.bak
+
+# === CLion / JetBrains ===
+.idea/
+cmake-build-*/
+*.iml
+
+# === CMake ===
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+build/
+compile_commands.json
+
+# === RP2040 / Pico SDK ===
+*.uf2
+*.elf
+*.hex
+*.bin
+*.map
+
+# === SDL temp files ===
+*.dll
+*.so
+*.dylib
+
+# === Backup files ===
+*~
+\#*\#
+.\#*
+
+# === Optional: user overrides ===
+*.swp
+*.swo
+*.swn
+
+# === macOS ===
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
