@@ -3,6 +3,5 @@ add_executable(host_test
 )
 
 target_link_libraries(host_test
-        lokey_audio
-        SDL2::SDL2
+        liblokey
 )

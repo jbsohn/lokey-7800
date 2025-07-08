@@ -7,5 +7,5 @@ target_include_directories(lokey_audio PUBLIC
 )
 
 target_link_libraries(lokey_audio
-        pokey
+        liblokey
 )
