@@ -18,7 +18,7 @@
 - **liblokey:**  
   Portable, embeddable POKEY/audio library with a clean C/C++ API.  
   Runs and tested on the Pico (RP2040), desktop, and web.  
-  Core audio engine here: [liblokey](https://github.com/YOURNAME/liblokey)
+  Core audio engine here: [liblokey](https://github.com/jbsohn/liblokey)
 - **This project:**  
   Firmware and hardware “glue” for the 7800.  
   Brings everything together:

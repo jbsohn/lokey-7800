@@ -25,4 +25,6 @@ find_package(liblokey)
 add_subdirectory(libs)
 add_subdirectory(src)
 add_subdirectory(firmware)
-add_subdirectory(host_test)
+add_subdirectory(test/pico)
+add_subdirectory(test/pico_7800bus_sim)
+
