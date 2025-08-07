@@ -66,6 +66,28 @@
 
 ---
 
+## Hardware Prototype: Untested 7800 Simulator Setup
+
+LOKEY-Pokey-7800 isn’t just about the cartridge hardware—development requires a way to simulate the Atari 7800 and its cartridge bus.  
+**The current setup uses two Raspberry Pi Picos:**
+- One Pico stands in as the “Atari 7800 + cartridge,” sending POKEY register writes and signals.
+- The other Pico (mounted on the proto board) acts as the on-cart sound chip, running liblokey and generating audio.
+
+> This is the untested “7800 simulator” rig—a flexible way to prototype and debug the LOKEY cartridge *before* risking real hardware.
+
+![LOKEY-Pokey-7800: Dual Pico Development Rig (Side View)](./images/bussim-top.jpeg)  
+*Left: 7800/cartridge simulator Pico. Right: LOKEY (RP2040) on proto board, wired for audio output.*
+
+![LOKEY-Pokey-7800: Wiring and Underside](./images/bussim-bottom.jpeg)  
+*View of the jumper connections and proto board wiring. One Pico is the bus master; one is the cart.*
+
+> “It’s not pretty, but it’s progress!”  
+> — Real Homebrew Developers, everywhere
+
+---
+
+*This approach lets us fully test communication and audio output before plugging into a real 7800—less magic smoke, more rapid iteration. If you want to help with firmware, test routines, or have ideas for better simulation/debug flows, join in!*
+
 ## AI-Assisted Development
 
 This project wouldn’t exist—at least not as a one-person, evenings-and-weekends effort—without real, practical help from AI. ChatGPT and related tools have made it possible to tackle firmware, C++ refactors, embedded hardware, and documentation at a speed that just isn’t realistic solo.
