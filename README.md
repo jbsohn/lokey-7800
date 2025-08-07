@@ -66,6 +66,16 @@
 
 ---
 
+## A Note from the Developer
+
+**Full disclosure:** I’m a software developer, not a hardware engineer!  
+Most of my experience is on the code side—so designing a reliable 7800 cartridge PCB with a microcontroller on board is *well* outside my comfort zone.
+
+If you see something questionable in my breadboard setup, or have tips for making this design actually work on real hardware, I’m all ears (and genuinely grateful).  
+Honestly, this part is getting a little too deep for me… so any advice, critique, or hands-on help is super welcome. 😅
+
+---
+
 ## Hardware Prototype: Untested 7800 Simulator Setup
 
 LOKEY-Pokey-7800 isn’t just about the cartridge hardware—development requires a way to simulate the Atari 7800 and its cartridge bus.  
