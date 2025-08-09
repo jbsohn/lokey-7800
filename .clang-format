@@ -1,0 +1,24 @@
+# Based on Chromium style
+# - 4-space indents
+# - 120-character lines
+# - aligned access modifiers
+# - includes not auto-sorted
+---
+Language: Cpp
+BasedOnStyle: Chromium
+
+# Indentation and spacing
+TabWidth: 4
+IndentWidth: 4
+UseTab: Never
+AccessModifierOffset: -4
+
+# Formatting
+ColumnLimit: 120
+BreakBeforeBraces: Attach
+AllowShortFunctionsOnASingleLine: Empty
+ReflowComments: true
+
+# Includes
+SortIncludes: Never
+IncludeBlocks: Preserve

@@ -1,0 +1,9 @@
+[submodule "pico-sdk"]
+	path = pico-sdk
+	url = https://github.com/raspberrypi/pico-sdk.git
+[submodule "Nuked-OPM"]
+	path = Nuked-OPM
+	url = git@github.com:jbsohn/Nuked-OPM.git
+[submodule "liblokey"]
+	path = liblokey
+	url = git@github.com:jbsohn/liblokey.git
