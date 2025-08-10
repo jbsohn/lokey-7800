@@ -1,13 +1,7 @@
 add_library(lokey_audio STATIC
-        lokey_audio.cpp
-        NukedOpmYM.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/nuked_opm_ym.cpp
 )
 
-target_include_directories(lokey_audio PUBLIC
-        ${CMAKE_SOURCE_DIR}/include
+target_include_directories(lokey_audio PRIVATE
         ${CMAKE_SOURCE_DIR}/Nuked-OPM
-)
-
-target_link_libraries(lokey_audio
-        liblokey
 )
