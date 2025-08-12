@@ -1,48 +1,100 @@
-#include "audio/sdl_audio_sink.hpp"
-#include "nuked_opm_ym.hpp"
+#include <SDL.h>
+#include <atomic>
+#include <cstdint>
+#include <cstdio>
+#include <cstring>
+#include <memory>
+#include <vector>
+#include "ymfm_2151.hpp"
 
-#include <chrono>
-#include <iostream>
+std::unique_ptr<Ymfm2151> gYM;
+static std::atomic<bool> gReady{false};
+static int gBufferSize = 0;
 
-int main() {
-    using namespace std::chrono_literals;
+void write_reg(uint8_t reg, uint8_t value) {
+    gYM->selectRegister(reg);
+    gYM->writeData(value);
+}
 
-    std::cout << "Starting YM2151 test..." << std::endl;
+void key_on_test_patch() {
+    write_reg(0x18, 0x00); // LFO off
+    write_reg(0x20, 0xC7); // ch0: pan L+R, FB=0, ALG=7
+    for (int op = 0; op < 4; ++op) write_reg(0x60 + op * 8, 0x10); // TL
+    for (int op = 0; op < 4; ++op) write_reg(0x40 + op * 8, 0x01); // MULT=1
+    for (int op = 0; op < 4; ++op) write_reg(0x80 + op * 8, 0x1F); // AR (fast attack)
+    for (int op = 0; op < 4; ++op) write_reg(0xA0 + op * 8, 0x00); // D1R (no decay)
+    for (int op = 0; op < 4; ++op) write_reg(0xA8 + op * 8, 0x0F); // D1L (max sustain)
+    for (int op = 0; op < 4; ++op) write_reg(0xC0 + op * 8, 0x00); // D2R (no 2nd decay)
+    for (int op = 0; op < 4; ++op) write_reg(0xE0 + op * 8, 0x00); // RR (no release)
+    write_reg(0x28, 0x00); // FNUM LSB
+    write_reg(0x30, 0x40); // BLOCK=4, FNUM MSB=0
+    write_reg(0x08, 0xF0); // Key on all ops, ch0
+}
 
-    // Initialize audio sink
-    SDLAudioSink sink(44100, 512);
-    sink.start();
+void render(int16_t* out, int samples) {
+    // Get audio from Ymfm2151 and copy to out
+    std::vector<int16_t> buf = gYM->renderAudio();
+    int n = std::min(samples, (int)buf.size());
+    for (int i = 0; i < n; ++i) {
+        out[i] = buf[i];
+    }
+    // Zero any remaining samples if needed
+    for (int i = n; i < samples; ++i) {
+        out[i] = 0;
+    }
+}
 
-    // Initialize YM2151
-    NukedOpmYM ym(44100, 512);
-    ym.reset();
+void SDLCALL audioCallback(void*, Uint8* stream, int lenBytes) {
+    printf("Audio callback: lenBytes=%d\n", lenBytes);
+    if (!gReady.load(std::memory_order_relaxed)) {
+        std::memset(stream, 0, lenBytes);
+        return;
+    }
+    int16_t* out = reinterpret_cast<int16_t*>(stream);
+    int frames = lenBytes / sizeof(int16_t);
+    render(out, frames);
+}
 
-    // Example: simple tone on channel 0 using operator 0
-    ym.writeReg(0x20, 0x01); // CH0 Operator 0: detune=0, multiple=1
-    ym.writeReg(0x40, 0x3F); // CH0 Operator 0: total level = 63 (lower volume)
-    ym.writeReg(0x60, 0x0F); // CH0 Operator 0: attack rate
-    ym.writeReg(0x80, 0x77); // CH0 Operator 0: decay rate
-    ym.writeReg(0xA0, 0x00); // CH0: Frequency LSB
-    ym.writeReg(0xA8, 0x1F); // CH0: Frequency MSB (key-on)
-    sink.writeAudio(ym.renderAudio());
+int main(int argc, char** argv) {
+    const int sampleRate = 44100;
+    gBufferSize = 512;
 
-    // Enable only operator 0 on channel 0
-    ym.writeReg(0xB0, 0x32); // CH0: connect=2, feedback=1
-    ym.writeReg(0xB4, 0xC0); // CH0: key on
-    const auto samples = ym.renderAudio();
-    sink.writeAudio(ym.renderAudio());
+    if (SDL_Init(SDL_INIT_AUDIO) != 0) {
+        std::fprintf(stderr, "SDL_Init failed: %s\n", SDL_GetError());
+        return 1;
+    }
+    SDL_SetHint(SDL_HINT_AUDIO_RESAMPLING_MODE, "trivial");
 
-    // Output mixing — enable all channels
-    ym.writeReg(0x1B, 0xC0); // L+R output enable (Global)
-    sink.writeAudio(ym.renderAudio());
+    SDL_AudioSpec want{};
+    want.freq = sampleRate;
+    want.format = AUDIO_S16SYS;
+    want.channels = 2;
+    want.samples = gBufferSize;
+    want.callback = audioCallback;
 
-    // Feed audio for 2 seconds
-    for (int i = 0; i < 48000 * 2; ++i) {
-        // 2 seconds @ 48kHz
-        auto samples = ym.renderAudio();
-        sink.writeAudio(samples);
+    SDL_AudioSpec have{};
+    SDL_AudioDeviceID dev = SDL_OpenAudioDevice(nullptr, 0, &want, &have, 0);
+    if (!dev) {
+        std::fprintf(stderr, "SDL_OpenAudioDevice failed: %s\n", SDL_GetError());
+        SDL_Quit();
+        return 1;
     }
 
-    std::cout << "Finished playback." << std::endl;
+    gYM = std::make_unique<Ymfm2151>(sampleRate, gBufferSize);
+    gYM->reset();
+    key_on_test_patch();
+
+    gReady.store(true, std::memory_order_relaxed);
+    SDL_PauseAudioDevice(dev, 0);
+
+    std::printf("YMFM YM2151 SDL test running. SampleRate=%d, BufferSize=%d\n", have.freq, gBufferSize);
+    std::printf("Press Enter to quit.\n");
+    (void)getchar();
+
+    SDL_PauseAudioDevice(dev, 1);
+    gReady.store(false, std::memory_order_relaxed);
+    gYM.reset();
+    SDL_CloseAudioDevice(dev);
+    SDL_Quit();
     return 0;
 }

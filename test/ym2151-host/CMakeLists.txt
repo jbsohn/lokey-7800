@@ -14,12 +14,11 @@ find_package(SDL2 REQUIRED)
 # test_ym_host
 add_executable(test_ym_host_sdl
         ${CMAKE_CURRENT_SOURCE_DIR}/test_ym_host_sdl.cpp
-        ${CMAKE_SOURCE_DIR}/../../src/nuked_opm_ym.cpp
-        ${CMAKE_SOURCE_DIR}/../../Nuked-OPM/opm.c
+        ${CMAKE_SOURCE_DIR}/../../src/ymfm_2151.cpp
+        ${CMAKE_SOURCE_DIR}/../../ymfm/src/ymfm_opm.cpp
 )
 target_include_directories(test_ym_host_sdl PRIVATE
-        ${CMAKE_SOURCE_DIR}/../../liblokey/include
-        ${CMAKE_SOURCE_DIR}/../../Nuked-OPM
+        ${CMAKE_SOURCE_DIR}/../../ymfm/src
         ${CMAKE_SOURCE_DIR}/../../src
 )
 target_link_libraries(test_ym_host_sdl PRIVATE liblokey SDL2::SDL2)
