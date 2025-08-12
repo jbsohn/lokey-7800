@@ -1,14 +1,15 @@
 # LOKEY-Pokey-7800
 
-> ⚠️ **Early-stage hardware/firmware project. Unstable, experimental, and *loud*.**  
-> You found this before it’s even “alpha” — welcome!
+> ⚠️ **Early-stage hardware/firmware project. Unstable, experimental, and *loud*.**
 
-**LOKEY-Pokey-7800** is the missing link between our portable POKEY audio core (**liblokey**)—already running on the
+**LOKEY-Pokey-7800** goal is to be the missing link between our portable POKEY audio core (**liblokey**)—already running
+on the
 Raspberry Pi Pico—and real Atari 7800 hardware.
 
-- **liblokey** runs accurate POKEY emulation on the RP2040 (Pico), combining the best of Atari800 and OpenEmu ProSystem
+- **[liblokey](https://github.com/jbsohn/liblokey)** runs accurate POKEY emulation on the RP2040 (Pico), combining the
+  best of Atari800 and OpenEmu ProSystem
   7800 Core codebases.
-- **Nuked-OPM YM2151** emulation now integrated for future dual-chip audio projects.
+- **[YMFM](https://github.com/aaronsgiles/ymfm) YM2151** emulation now integrated for future dual-chip audio projects.
 - **This project** adapts and deploys those engines *as a real hardware add-on*—a cartridge-ready sound solution for the
   Atari 7800, plus planned tracker support.
 
@@ -17,14 +18,12 @@ Raspberry Pi Pico—and real Atari 7800 hardware.
 
 ---
 
-## Architecture
+## Architecture Goals
 
 - **liblokey:**  
   Portable, embeddable POKEY/audio library with a clean C/C++ API.  
-  Runs and tested on the Pico (RP2040) and desktop.  
-  *(WASM builds not yet implemented in liblokey/libPOKEY)*  
-  Core audio engine here: [liblokey](https://github.com/jbsohn/liblokey)
-- **Nuked-OPM YM2151:**  
+  Runs and tested on the Pico (RP2040) and desktop.
+- **YMFM YM2151:**  
   High-accuracy FM synthesis core now included for YM-based 7800+ projects.
 - **This project:**  
   Firmware and hardware “glue” for the 7800.  
@@ -39,7 +38,7 @@ Raspberry Pi Pico—and real Atari 7800 hardware.
 ## Features (In Progress)
 
 - **POKEY audio emulation on real hardware** (tested on Pico via liblokey)
-- **YM2151 FM synthesis emulation** (via Nuked-OPM)
+- **YM2151 FM synthesis emulation** (via YMFM)
 - **MOD/XM tracker support** — *planned but on hold* (via [libxm](https://github.com/Artefact2/libxm))
 - **Cartridge-compatible design**
     - 27C256 EPROM + RP2040 on a single board
@@ -54,7 +53,7 @@ Raspberry Pi Pico—and real Atari 7800 hardware.
 ## Status
 
 - **Proven:** liblokey runs on Pico; POKEY audio works!
-- **YM2151 integration complete** — ready for Pico testing.
+- **YM2151 integration started** — first host SDL audio output confirmed.
 - **libxm integration on hold** until core chip work is finalized.
 - This repo: Wiring up for full 7800 support—hardware, firmware, and integration in progress.
 
