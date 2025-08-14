@@ -2,8 +2,8 @@
 	path = pico-sdk
 	url = https://github.com/raspberrypi/pico-sdk.git
 [submodule "liblokey"]
-	path = liblokey
+	path = external/liblokey
 	url = git@github.com:jbsohn/liblokey.git
 [submodule "ymfm"]
-	path = ymfm
+	path = external/ymfm
 	url = https://github.com/jbsohn/ymfm.git
