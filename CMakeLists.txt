@@ -24,6 +24,6 @@ FetchContent_MakeAvailable(CPM)
 message(STATUS "CMAKE_CURRENT_SOURCE_DIR: ${CMAKE_CURRENT_SOURCE_DIR}")
 
 # Add subdirectories
-add_subdirectory(liblokey)
+add_subdirectory(external/liblokey)
 add_subdirectory(src)
 add_subdirectory(test)
