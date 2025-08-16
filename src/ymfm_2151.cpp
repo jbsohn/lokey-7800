@@ -21,11 +21,8 @@ std::vector<int16_t> Ymfm2151::renderAudio() {
         const int32_t left = tempBuf[i].data[0];
         const int32_t right = tempBuf[i].data[1];
         int32_t mixed = (left + right) / 2;
-        mixed *= 12; // TODO: increasing volume 12x to start
-        if (mixed > 32767)
-            mixed = 32767;
-        if (mixed < -32768)
-            mixed = -32768;
+        mixed *= 12;  // TODO: increasing volume 12x to start
+        mixed = std::clamp(mixed, static_cast<int32_t>(-32768), static_cast<int32_t>(32767));
         buffer[i] = static_cast<int16_t>(mixed);
     }
     return buffer;
