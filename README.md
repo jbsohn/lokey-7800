@@ -1,8 +1,8 @@
-# LOKEY-Pokey-7800
+# LOKEY-7800
 
 > ⚠️ **Early-stage hardware/firmware project. Unstable, experimental, and *loud*.**
 
-**LOKEY-Pokey-7800** goal is to be the missing link between our portable POKEY audio core (**liblokey**)—already running
+**LOKEY-7800** goal is to be the missing link between our portable POKEY audio core (**liblokey**)—already running
 on the
 Raspberry Pi Pico—and real Atari 7800 hardware.
 
