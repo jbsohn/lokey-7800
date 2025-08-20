@@ -1,21 +1,3 @@
 {
-    "C_Cpp.intelliSenseEngine": "default",
-    "C_Cpp.errorSquiggles": "enabled",
-    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
-    "C_Cpp.clang_format_style": "file",
-    "C_Cpp.default.cppStandard": "c++20",
-    "[cpp]": {
-        "editor.defaultFormatter": "ms-vscode.cpptools",
-        "editor.formatOnSave": true
-    },
-    "files.exclude": {
-        "**/_deps": true
-    },
-    "search.exclude": {
-        "**/_deps": true
-    },
-    "C_Cpp.default.includePath": [
-        "${workspaceFolder}/**",
-        "!${workspaceFolder}/**/_deps/**"
-    ]
+    "C_Cpp.default.compileCommands": "${workspaceFolder}/build/compile_commands.json"
 }

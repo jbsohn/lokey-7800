@@ -46,3 +46,6 @@ Icon?
 ._*
 .Spotlight-V100
 .Trashes
+
+compile_commands.json
+.cache
