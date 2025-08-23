@@ -19,12 +19,14 @@ int main() {
     while (true) {
         // Fastest possible pin reads
         uint8_t data = 0;
-        for (int i = 0; i < 8; ++i)
+        for (int i = 0; i < 8; ++i) {
             data |= (gpio_get(dataPins[i]) << i);
+        }
 
         uint8_t addr = 0;
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < 4; ++i) {
             addr |= (gpio_get(addrPins[i]) << i);
+        }
 
         uint8_t cs = gpio_get(csPin);
         uint8_t wr = gpio_get(wrPin);

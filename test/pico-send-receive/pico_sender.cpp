@@ -6,6 +6,8 @@ constexpr std::array<uint8_t, 4> addrPins = {10, 11, 12, 13};          // A0-A3
 constexpr uint8_t csPin = 14;                                          // /CS
 constexpr uint8_t wrPin = 15;                                          // /WR
 
+constexpr int SLEEP_RATE = 0;
+
 [[noreturn]]
 int main() {
     stdio_init_all();
@@ -37,6 +39,6 @@ int main() {
         sleep_us(2);
         gpio_put(wrPin, true);
 
-        sleep_ms(1);
+        sleep_ms(SLEEP_RATE);
     }
 }

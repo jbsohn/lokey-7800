@@ -8,6 +8,7 @@ constexpr uint8_t csPin = 14;                                          // /CS
 constexpr uint8_t wrPin = 15;                                          // /WR
 
 constexpr int32_t PRINT_INTERVAL = 10000;
+constexpr int SLEEP_RATE = 0;
 
 [[noreturn]]
 int main() {
@@ -55,6 +56,6 @@ int main() {
             }
         }
         prevWr = wr;
-        sleep_us(1);
+        sleep_us(SLEEP_RATE);
     }
 }
