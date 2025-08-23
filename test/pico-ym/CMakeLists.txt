@@ -10,7 +10,7 @@ target_include_directories(test_ym_pico PRIVATE
         ${CMAKE_SOURCE_DIR}/external/liblokey/include
 )
 target_link_libraries(test_ym_pico PRIVATE
-        lokey_audio
+        lokeyaudio
         liblokey
         pico_stdlib
         hardware_pwm

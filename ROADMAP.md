@@ -12,10 +12,10 @@
 - [x] Begin roadmap tracking
 
 ## 🔜 Phase 2: Direct RP2040 Output
-- [ ] Port current SDL test to run on bare RP2040
-- [ ] Output Pokey audio to powered speaker via GPIO DAC or PWM
-- [ ] Compare against SDL output for timing/sound accuracy
-- [ ] Document supported features and timing considerations
+- [x] Port current SDL test to run on bare RP2040
+- [x] Output Pokey audio to powered speaker via GPIO DAC or PWM
+- [x] Compare against SDL output for timing/sound accuracy
+- [x] Document supported features and timing considerations
 
 ## 🔮 Phase 3: 7800 Cartridge Integration
 - [ ] Design flexible cartridge PCB with socketed RP2040 and EPROM support

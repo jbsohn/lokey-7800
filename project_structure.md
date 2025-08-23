@@ -15,8 +15,8 @@ lokey/
 │
 ├── src/                         # Core LOKEY audio engine and wrappers
 │   ├── CMakeLists.txt
-│   ├── lokey_audio.cpp
-│   └── pokey_adapter.cpp
+│   ├── ymfm_2151.hpp
+│   └── ymfm_2151.cpp
 │
 ├── firmware/                    # RP2040 firmware target
 │   ├── CMakeLists.txt
@@ -55,13 +55,13 @@ lokey/
 
 ## 🔧 Build Targets
 
-| Target Name       | Type        | Purpose                                |
+| Target Name       | Type        | Purpose                               |
 |------------------|-------------|----------------------------------------|
-| `lokey_audio`     | Static Lib  | Core audio logic, used by all builds   |
-| `rp2040_main`     | Executable  | Firmware entry point                   |
-| `host_test`       | Executable  | SDL2 desktop test app                  |
-| `pokey`           | Static Lib  | Legacy POKEY chip emulation            |
-| `xm`              | Static Lib  | (Future) XM module playback engine     |
+| `lokeyaudio`     | Static Lib  | Core audio logic, used by all builds   |
+| `rp2040_main`    | Executable  | Firmware entry point                   |
+| `host_test`      | Executable  | SDL2 desktop test app                  |
+| `pokey`          | Static Lib  | Legacy POKEY chip emulation            |
+| `xm`             | Static Lib  | (Future) XM module playback engine     |
 
 ---
 

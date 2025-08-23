@@ -13,6 +13,6 @@ Checks: >
   -readability-magic-numbers,
   -clang-diagnostic-error
 WarningsAsErrors: ""
-HeaderFilterRegex: "^(?!pico-sdk/).*"
+HeaderFilterRegex: "^(src/|test/)"
 FormatStyle: file
 SystemHeaders: false
