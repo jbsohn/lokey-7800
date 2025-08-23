@@ -1,8 +1,6 @@
+
 if(LOKEY_7800_TARGET_PICO)
-    add_subdirectory(pico-7800bus-sim)
-    add_subdirectory(pico-send-receive)
-    add_subdirectory(pico-stress)
-    add_subdirectory(pico-ym)
+    add_subdirectory(pico)
 else()
-    add_subdirectory(ym2151-host)
+    add_subdirectory(host)
 endif()
