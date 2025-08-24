@@ -1,16 +1,11 @@
-# LOKEY-7800
+# LOKEY-7800: Modern Audio for Atari 7800, Powered by RP2040
 
 > ⚠️ **Early-stage hardware/firmware project. Unstable, experimental, and *loud*.**
 
-**LOKEY-7800** goal is to be the missing link between our portable POKEY audio core (**liblokey**)—already running on the Raspberry Pi Pico—and real Atari 7800 hardware.
+**LOKEY-7800** brings modern, enhanced audio to the classic Atari 7800—using a cheap, hobbyist-friendly Raspberry Pi Pico (RP2040) in every cartridge. No more rare, expensive POKEY chips—LOKEY-7800 emulates POKEY (and more) with open-source firmware and hardware, so *every* new game can have great sound.
 
-- **[liblokey](https://github.com/jbsohn/liblokey)** runs accurate POKEY emulation on the RP2040 (Pico), combining the best of Atari800 and OpenEmu ProSystem 7800 Core codebases.
-- **[YMFM](https://github.com/aaronsgiles/ymfm) YM2151** emulation is in its earliest stages: we’re currently generating a basic tone on Pico hardware—full YM-based audio is planned for the future.
-- **This project** adapts and deploys those engines *as a real hardware add-on*—a cartridge-ready sound solution for the Atari 7800, plus planned tracker support.
-- **Pico-to-pico communication** now working, simulating Atari 7800-to-cartridge bus transactions—proving our I/O and timing approach before real hardware arrives.
-
-**Best of all: the RP2040 costs just a few bucks per cart.**  
-*No more hoarding rare chips. Modern sound—affordably—for every new game.*
+- **Why does this exist?**  
+  The 7800’s TIA audio is legendary… for being bad. Cartridges like *Ballblazer* added POKEY for real music, but those chips are now unicorns. LOKEY-7800 replaces them with a $5 microcontroller—making enhanced audio affordable for everyone.
 
 ---
 
@@ -88,4 +83,4 @@ If you’re curious about my broader take on how AI is reshaping software develo
 
 ## License
 
-GPLv2 (see [LICENSE](LICENSE)).
+GPLv2 (see [LICENSE](LICENSE))
