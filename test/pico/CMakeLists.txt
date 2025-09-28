@@ -1,3 +1,4 @@
+add_subdirectory(hello)
 add_subdirectory(7800bus-sim)
 add_subdirectory(send-receive)
 add_subdirectory(stress)
