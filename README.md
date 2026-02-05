@@ -1,3 +1,7 @@
+⚠️ **Project Archived**
+
+Archived for now while other approaches are explored. This may come back — stay tuned.
+
 # LOKEY-7800: Modern Audio for Atari 7800, Powered by RP2040
 
 > ⚠️ **Early-stage hardware/firmware project. Unstable, experimental, and *loud*.**
